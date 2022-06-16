@@ -1,7 +1,8 @@
 import { json } from "@remix-run/server-runtime";
 import invariant from "tiny-invariant";
 
-import { getImages } from "~/models/image.server";
+import type { Logos } from "~/models/image.server";
+import { getLogos } from "~/models/image.server";
 
 export async function loader({ request }: any): Promise<Response> {
   const reqUrl = new URL(request.url);
@@ -12,7 +13,7 @@ export async function loader({ request }: any): Promise<Response> {
     "paramUrl must be a string"
   );
 
-  const images = await getImages(new URL(paramUrl));
+  const logos: Logos = await getLogos(new URL(paramUrl));
   
-  return json(images);
+  return json(logos);
 }

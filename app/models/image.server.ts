@@ -1,13 +1,22 @@
 import puppeteer from "puppeteer";
 
+export type Logo = {
+  rel: string | null,
+  sizes: string | null,
+  type: string | null,
+  href: string | null,
+  dimension: number,
+};
+export type Logos = Array<Logo>;
 
-export async function getImages(url: URL): Promise<Array<any>> {
+
+export async function getLogos(url: URL): Promise<Logos> {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url.origin);
 
   // Fetch all link-tags and filter by `icon`
-  const linkTags = await page.evaluate(() => [...document?.head?.querySelectorAll('link')]
+  const linkTags: Logos = await page.evaluate(() => [...document?.head?.querySelectorAll('link')]
     .map(elem => ({
       rel: elem?.getAttribute('rel'),
       sizes: elem?.getAttribute('sizes'),

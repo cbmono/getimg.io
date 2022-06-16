@@ -2,7 +2,7 @@
 
 ## TODO's
 
-- [ ] Version api endpoint: `/api/v1/icons?url=...
+- [x] Version api endpoint: `/api/v1/logos?url=...`
 - [ ] ...
 
 ---
